@@ -18,7 +18,8 @@ public class DB {
             Class.forName("org.sqlite.JDBC");
             url = "jdbc:sqlite:qr.db";
             conn = DriverManager.getConnection(url, "root", "");
-        } catch (SQLException exc) {
+        } 
+        catch (SQLException exc) {
             JOptionPane.showMessageDialog(null, "Error in database connection. 1");
         }
         return conn;
@@ -32,9 +33,11 @@ public class DB {
             String query = "insert into members(uid, name) values('"+uid+"', '"+name+"')";
             ps = conn.prepareStatement(query);
             ps.executeUpdate();
-        } catch (SQLException ex) {
-        	ex.printStackTrace();
-        } finally {
+        } 
+        catch (SQLException ex) {
+            ex.printStackTrace();
+        } 
+        finally {
             ps.close();
             conn.close();
         }
@@ -49,11 +52,15 @@ public class DB {
            Statement st = conn.createStatement();
            ResultSet res = st.executeQuery(query);
            while(res.next()){
-        	   name = res.getString("name");
+               name = res.getString("name");
            }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
+        } 
+        finally {
+            ps.close();
+            conn.close();
         }
         return name;
     }
